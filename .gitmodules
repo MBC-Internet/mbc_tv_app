@@ -1,0 +1,3 @@
+[submodule "src/assets"]
+	path = src/assets
+	url = https://github.com/MBC-Internet/MBC_TV_APP-Assets.git
