@@ -5,7 +5,7 @@
   <img width="245" src="https://user-images.githubusercontent.com/55127127/122067593-a95a0a80-ce2e-11eb-8b57-10828caa8d55.png">  
   <p> 
   <br>
-    <img  alt="Version"  src="https://img.shields.io/badge/version-0.9-blue.svg?cacheSeconds=2592000"  />  
+    <img  alt="Version"  src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000"  />  
     <a  href="https://www.spaceone.org/docs/guides"  target="_blank">  
     <img  alt="Documentation"  src="https://img.shields.io/badge/documentation-yes-brightgreen.svg"  />  
     </a>  
