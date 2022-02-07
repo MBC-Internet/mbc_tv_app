@@ -8,37 +8,4 @@
 Copyright © 2021 iMBC. All rights reserved.
 ```
 
-```
-개인적으로 만족하지 못해 따로 시간될 때 진행하는 리팩토링 진행 레퍼지토리
-```
-
-# Server Monitoring Dashboard
-```
-https://choipureum.github.io/ServerStatus/history/mbc-app-v4-5-1
-```
-
-# 주의사항
-1. 일부 콘텐츠는 저작권자의 요청에 따라 서비스가 제공되지 않을 수 있습니다.
-2. 유료 VOD(다시보기), 영화, 해외시리즈 등의 콘텐츠는 상품 구매 후 이용이 가능합니다.
-3. 영화/해외시리즈의 경우 저작권자의 요청에 따라 국내(대한민국)에서만 서비스 이용이 가능합니다.
-
-
-### 서비스 이용약관
-http://m.imbc.com/notice/terms.html
-### 유료서비스 이용약관
-http://m.imbc.com/notice/servicepaid.html
-### 개인정보 처리방침
-http://m.imbc.com/notice/privacy.html
-
-# Function
-- Video TimeLine
-- MBC News
-- 온에어
-- 엠빅라이브
-- 다시보기
-- 지금무료
-- 올림픽 정보 연동 및 주요 컨텐츠 
-- 코로나 정보 및 예방접종 현황 
-
-
 
