@@ -1,0 +1,21 @@
+# This is a basic workflow to help you get started with Actions
+
+name: prWelcomeBOT
+
+on:
+  pull_request_target:
+    types: [opened]
+
+jobs:
+  issueWelcomeBOT:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v4
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for PR! Please regist comment with command: \n ** 반드시 테스트 및 빌드를 통과해주세요. **  \n 테스트 및 빌드 성공 시에 리뷰 권한 승인됩니다..!'
+            })
