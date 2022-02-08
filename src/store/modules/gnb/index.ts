@@ -1,7 +1,7 @@
-import { checkMobile } from '@/common/utils/common';
 import { Menu } from '@/types/common';
-import { Module, ActionContext } from 'vuex';
+import { Module } from 'vuex';
 import { RootState } from '../../index';
+import { actions } from './actions';
 import { getters } from './getters';
 import { mutations } from './mutations';
 
@@ -10,11 +10,11 @@ export interface gnbState {
 }
 
 export const gnb: Module<gnbState, RootState> = {
-	namespaced: true,
+	namespaced: false,
 	state: () => ({
 		gnb: [] as Menu[],
 	}),
 	mutations: mutations,
 	getters: getters,
-	actions: {},
+	actions: actions,
 };

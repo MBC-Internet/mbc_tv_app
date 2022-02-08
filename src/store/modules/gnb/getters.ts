@@ -1,9 +1,10 @@
-import { checkMobile } from '@/common/utils/common';
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { Menu } from '@/types/common';
 import { gnbState } from '.';
+import { gnbType } from './types';
 
 export const getters = {
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	fetchGnb(state: gnbState) {
+	[gnbType.getters.GET_GNB](state: gnbState): Menu[] {
 		return state.gnb;
 	},
 };

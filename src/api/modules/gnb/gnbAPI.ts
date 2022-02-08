@@ -1,16 +1,14 @@
-import axios, { AxiosPromise } from 'axios';
-import { config } from '@/api/index';
+import { AxiosPromise } from 'axios';
+import { ApiService, config } from '@/api/index';
 import { getDateFormat } from '@/common/utils/common';
 import { Menu } from '@/types/common';
 
-const params = {
-	date: getDateFormat(),
-};
+const date = getDateFormat();
 
 const fetchGNB = (): AxiosPromise<Menu[]> => {
-	const request = axios.get(`${config.controlUrl}/MBCApp/GNB?`, {
-		params,
-	});
+	const request = ApiService.get(
+		`${config.controlUrl}/MBCApp/GNB?date=${date}`,
+	);
 	return request;
 };
 

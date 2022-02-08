@@ -1,6 +1,7 @@
-import { checkMobile } from '@/common/utils/common';
-import { Module, ActionContext } from 'vuex';
+import { getUserAgentFromCookie } from '@/common/utils/cookies';
+import { Module } from 'vuex';
 import { RootState } from '../../index';
+import { actions } from './actions';
 import { getters } from './getters';
 import { mutations } from './mutations';
 
@@ -9,11 +10,11 @@ export interface userAgentState {
 }
 
 export const userAgent: Module<userAgentState, RootState> = {
-	namespaced: true,
+	namespaced: false,
 	state: () => ({
-		mobileState: '',
+		mobileState: getUserAgentFromCookie() || '',
 	}),
 	mutations: mutations,
 	getters: getters,
-	actions: {},
+	actions: actions,
 };

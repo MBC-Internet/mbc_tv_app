@@ -1,4 +1,3 @@
-import { checkMobile } from '@/common/utils/common';
 import { userAgentState } from '.';
 
 export const getters = {

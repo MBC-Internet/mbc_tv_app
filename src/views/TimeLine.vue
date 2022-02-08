@@ -1,15 +1,17 @@
 <template>
 	<div class="home">
-		<img alt="Vue logo" />
+		<p>타임라인</p>
 	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
 export default defineComponent({
 	name: 'Home',
 	components: {},
 });
 </script>
+<style scoped>
+@import url('~@/assets/css/main.css');
+</style>
