@@ -10,10 +10,29 @@ const routes: Array<RouteRecordRaw> = [
 		component: TimeLine,
 	},
 	{
-		path: '/about',
-		name: 'About',
-		component: () =>
-			import(/* webpackChunkName: "about" */ '../views/About.vue'),
+		path: '/news',
+		name: 'News',
+		component: () => import('../views/News.vue'),
+	},
+	{
+		path: '/onAir',
+		name: 'OnAir',
+		component: () => import('../views/OnAir.vue'),
+	},
+	{
+		path: '/mbicLive',
+		name: 'MbicLive',
+		component: () => import('../views/MbicLive.vue'),
+	},
+	{
+		path: '/replay',
+		name: 'Replay',
+		component: () => import('../views/Replay.vue'),
+	},
+	{
+		path: '/nowFree',
+		name: 'NowFree',
+		component: () => import('../views/NowFree.vue'),
 	},
 ];
 

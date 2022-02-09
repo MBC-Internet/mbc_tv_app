@@ -14,14 +14,7 @@
 </template>
 
 <script lang="ts">
-import {
-	computed,
-	defineComponent,
-	onBeforeUpdate,
-	onUpdated,
-	proxyRefs,
-	ref,
-} from 'vue';
+import { computed, defineComponent, onBeforeUpdate, onUpdated, ref } from 'vue';
 import GNBMenu from './modules/GNBMenu.vue';
 import store from '@/store';
 import { gnbType } from '@/store/modules/gnb/types';
