@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import store from '@/store';
-import TimeLine from '../views/TimeLine.vue';
+import TimeLine from '@/views/timeline/Index.vue';
 import { userAgnetType } from '@/store/modules/userAgent/types';
 
 const routes: Array<RouteRecordRaw> = [
@@ -12,27 +12,27 @@ const routes: Array<RouteRecordRaw> = [
 	{
 		path: '/news',
 		name: 'News',
-		component: () => import('../views/News.vue'),
+		component: () => import('@/views/news/Index.vue'),
 	},
 	{
 		path: '/onAir',
 		name: 'OnAir',
-		component: () => import('../views/OnAir.vue'),
+		component: () => import('@/views/onair/Index.vue'),
 	},
 	{
 		path: '/mbicLive',
 		name: 'MbicLive',
-		component: () => import('../views/MbicLive.vue'),
+		component: () => import('@/views/mbiclive/Index.vue'),
 	},
 	{
 		path: '/replay',
 		name: 'Replay',
-		component: () => import('../views/Replay.vue'),
+		component: () => import('@/views/replay/Index.vue'),
 	},
 	{
 		path: '/nowFree',
 		name: 'NowFree',
-		component: () => import('../views/NowFree.vue'),
+		component: () => import('@/views/nowfree/Index.vue'),
 	},
 ];
 

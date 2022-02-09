@@ -1,6 +1,6 @@
 <template>
 	<nav class="gnb" ref="gnb">
-		<div class="slide">
+		<div class="slide" ref="gnbSlide">
 			<ul ref="gnbUl">
 				<GNBMenu
 					v-for="(menu, index) in gnbList"
