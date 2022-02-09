@@ -1,5 +1,5 @@
 <template>
-	<li v-if="gnbMenu.State == 'Y'">
+	<li class="gnb-menu">
 		<router-link v-if="gnbMenu.Weblinkpos == 'GNB'" :to="gnbMenu.Link">
 			<a v-html="gnbMenu.MenuName"></a>
 		</router-link>
@@ -19,14 +19,14 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	setup(props, { emit }) {
+	setup(_, { emit }) {
 		return {};
 	},
 });
 </script>
 
 <style scoped>
-a {
-	white-space: 'nowrap';
+.gnb-menu a {
+	white-space: nowrap;
 }
 </style>
