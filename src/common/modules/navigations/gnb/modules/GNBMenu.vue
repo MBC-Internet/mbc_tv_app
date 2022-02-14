@@ -1,5 +1,10 @@
 <template>
-	<li class="gnb-menu" :class="{ on: isActive }" ref="menuLi">
+	<li
+		class="gnb-menu"
+		:class="{ on: isActive }"
+		ref="menuLi"
+		@click="movingGNB"
+	>
 		<router-link v-if="isGNB" :to="gnbMenu.Link">
 			<a v-html="gnbMenu.MenuName"></a>
 		</router-link>
@@ -8,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeUpdate, PropType, ref } from 'vue';
+import { computed, defineComponent, PropType, ref } from 'vue';
 import { Menu } from '@/types/common';
 import { useRoute } from 'vue-router';
 
@@ -32,22 +37,21 @@ export default defineComponent({
 			return isGNB.value && route.path == props.gnbMenu.Link;
 		});
 
-		onBeforeUpdate(() => {
+		const movingGNB = () => {
 			const li = menuLi.value as HTMLLIElement;
-			if (isActive.value) {
-				const windowWidth = computed(() => window.innerWidth / 2);
-				const move = li.offsetLeft;
-				const thisWidth = li.offsetWidth / 2;
-				const scrollMove = move - windowWidth.value + thisWidth;
-				const isOffset: boolean = move > windowWidth.value;
-				emit('movingGNB', isOffset, scrollMove);
-			}
-		});
+			const windowWidth = computed(() => window.innerWidth / 2);
+			const move = li.offsetLeft;
+			const thisWidth = li.offsetWidth / 2;
+			const scrollMove = move - windowWidth.value + thisWidth;
+			const isOffset: boolean = move > windowWidth.value;
+			emit('movingGNB', isOffset, scrollMove);
+		};
 
 		return {
 			isGNB,
 			isActive,
 			menuLi,
+			movingGNB,
 		};
 	},
 });

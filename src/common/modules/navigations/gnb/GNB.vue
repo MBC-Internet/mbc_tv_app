@@ -7,6 +7,7 @@
 					:ref="setGnbLi"
 					:key="index"
 					:gnbMenu="menu"
+					@movingGNB="movingGNB"
 				></GNBMenu>
 			</ul>
 		</div>
@@ -32,6 +33,7 @@ export default defineComponent({
 		const LI_PADDING = 16;
 		const UL_PADDING = 2;
 		const gnbUl = ref<HTMLUListElement>();
+		const gnbSlide = ref<HTMLDivElement>();
 		const gnbLength = computed(() => gnbList.value.length);
 		const gnbList = fetchGnbMenu();
 		let gnbLiArr: Array<Element> = [];
@@ -57,6 +59,10 @@ export default defineComponent({
 			}px`;
 		};
 
+		const movingGNB = (isOffset: boolean, scrollMove: number) => {
+			scrollMove = isOffset ? scrollMove : 0;
+			gnbSlide.value?.scroll({ left: scrollMove, behavior: 'smooth' });
+		};
 		onBeforeUpdate(() => {
 			gnbLiArr = [];
 		});
@@ -69,7 +75,9 @@ export default defineComponent({
 			gnbList,
 			gnbLiArr,
 			setGnbLi,
+			gnbSlide,
 			gnbUl,
+			movingGNB,
 		};
 	},
 });
