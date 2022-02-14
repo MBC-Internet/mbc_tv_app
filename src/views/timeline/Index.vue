@@ -1,5 +1,6 @@
 <template>
 	<div class="home">
+		<br /><br /><br />
 		<p>타임라인</p>
 	</div>
 </template>
