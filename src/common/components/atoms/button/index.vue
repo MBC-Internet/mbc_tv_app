@@ -2,12 +2,9 @@
 	<button
 		v-if="show"
 		type="button"
-		class="scroll-top"
 		:id="buttonId"
 		:style="{ backgroundImage: backgroundImage }"
-	>
-		상단으로 이동
-	</button>
+	></button>
 </template>
 
 <script lang="ts">
@@ -28,7 +25,7 @@ export default defineComponent({
 			default: '',
 		},
 	},
-	setup(props) {
+	setup() {
 		return {};
 	},
 });

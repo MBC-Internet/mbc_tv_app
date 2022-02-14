@@ -20,12 +20,6 @@ import GNBMenu from './modules/GNBMenu.vue';
 import store from '@/store';
 import { gnbType } from '@/store/modules/gnb/types';
 
-const fetchGnbMenu = () => {
-	store.dispatch(gnbType.actions.FETCH_GNB);
-	const gnbList = computed(() => store.getters[gnbType.getters.GET_GNB]);
-	return gnbList;
-};
-
 export default defineComponent({
 	components: { GNBMenu },
 	name: 'gnb',
@@ -34,9 +28,13 @@ export default defineComponent({
 		const UL_PADDING = 2;
 		const gnbUl = ref<HTMLUListElement>();
 		const gnbSlide = ref<HTMLDivElement>();
+		const gnbList = computed(() => store.getters[gnbType.getters.GET_GNB]);
 		const gnbLength = computed(() => gnbList.value.length);
-		const gnbList = fetchGnbMenu();
 		let gnbLiArr: Array<Element> = [];
+
+		(async () => {
+			await Promise.all([store.dispatch(gnbType.actions.FETCH_GNB)]);
+		})();
 
 		const setGnbLi = (el: any) => {
 			if (el) gnbLiArr.push(el);

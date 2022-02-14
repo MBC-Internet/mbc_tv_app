@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { getDateFormat } from '@/common/utils/common';
 import axios, { AxiosResponse } from 'axios';
 
 export const config = {
@@ -7,6 +8,8 @@ export const config = {
 	playVodUrl: `${process.env.VUE_APP_PLAYVOD_API}`,
 	mediaUrl: `${process.env.VUE_APP_MEDIA_API}`,
 };
+
+export const date = getDateFormat();
 
 export const ApiService = {
 	get(uri: string): Promise<AxiosResponse<any, any>> {
