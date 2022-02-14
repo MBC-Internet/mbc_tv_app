@@ -1,4 +1,4 @@
-import axios, { AxiosPromise } from 'axios';
+import axios from 'axios';
 import { config } from '@/api/index';
 import store from '@/store';
 import { getDateFormat } from '@/common/utils/common';

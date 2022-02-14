@@ -1,9 +1,6 @@
 import { AxiosPromise } from 'axios';
-import { ApiService, config } from '@/api/index';
-import { getDateFormat } from '@/common/utils/common';
+import { ApiService, config, date } from '@/api/index';
 import { Menu } from '@/types/common';
-
-const date = getDateFormat();
 
 const fetchGNB = (): AxiosPromise<Menu[]> => {
 	const request = ApiService.get(

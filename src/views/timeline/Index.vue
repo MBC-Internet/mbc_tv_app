@@ -13,6 +13,4 @@ export default defineComponent({
 	components: {},
 });
 </script>
-<style scoped>
-@import url('~@/assets/css/main.css');
-</style>
+<style scoped></style>

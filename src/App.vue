@@ -12,14 +12,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import GNB from '@/common/modules/navigations/gnb/GNB.vue';
+import upBtn from '@/common/components/molecules/upBtn/index.vue';
 
 export default defineComponent({
 	name: 'mbcapp',
-	components: { GNB },
+	components: { GNB, upBtn },
 	setup() {
 		return {};
 	},
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url('~@/assets/css/common.css');
+</style>
