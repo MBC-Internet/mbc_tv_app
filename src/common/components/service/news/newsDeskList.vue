@@ -18,7 +18,9 @@
 						v-for="(item, index) in sortedNewsDesks"
 						:key="index"
 					>
-						<span class="img"><img :src="item.Image" :alt="item.Title" /></span>
+						<span class="img"
+							><Image :imgsrc="item.Image" :imgalt="item.Title" default="d"
+						/></span>
 						<div>
 							<span class="title ellipsis2" v-html="item.Title"></span>
 							<span class="writer" v-html="item.Section"></span>

@@ -1,10 +1,12 @@
 <template>
-	<img :src="imgsrc" :alt="imgalt" @error="replaceDefaultImg" />
+	<!--<img :src="imgsrc" :alt="imgalt" @error="replaceDefaultImg" />-->
+	<img :data-url="imgsrc" @error="replaceDefaultImg" v-lazy-load />
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import {
+	baseImage,
 	defaultDramaThumbnail,
 	defaultMovieThumbnail,
 } from '@/common/modules/images/index';
@@ -18,6 +20,8 @@ const defaultImgFactory = (flag: string) => {
 		case 'm': // vertical movie default
 			factoryRes = defaultMovieThumbnail;
 			break;
+		default:
+			factoryRes = baseImage;
 	}
 	return factoryRes;
 };
@@ -40,7 +44,7 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		const defaultImg = computed(() => defaultImgFactory(props.default || 'd'));
+		const defaultImg = computed(() => defaultImgFactory(props.default || ''));
 
 		const replaceDefaultImg = (e: { target: { src: string } }) => {
 			e.target.src = defaultImg.value?.url;

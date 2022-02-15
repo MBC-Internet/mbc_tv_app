@@ -1,3 +1,8 @@
+const baseImage = {
+	name: '',
+	url: '',
+};
+
 const mbcNewsLogo = {
 	name: 'MBC 로고',
 	url: require('@/assets/images/mbcnews_logo.png'),
@@ -24,6 +29,7 @@ const upBtnImg = {
 };
 
 export {
+	baseImage,
 	mbcNewsLogo,
 	mbcNewsDeskLogo,
 	defaultDramaThumbnail,
