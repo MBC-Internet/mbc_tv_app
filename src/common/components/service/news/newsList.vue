@@ -2,11 +2,7 @@
 	<div>
 		<div class="visual_top">
 			<span class="img">
-				<Image
-					:imgsrc="mbcNewsLogo.url"
-					:imgalt="mbcNewsLogo.name"
-					default="d"
-				/>
+				<Image :imgsrc="mbcNewsLogo.url" :imgalt="mbcNewsLogo.name" />
 			</span>
 			<div class="news_top" v-if="newsTopItems">
 				<a>
