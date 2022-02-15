@@ -1,0 +1,59 @@
+<template>
+	<div v-if="listData" class="wrapper thumb_list">
+		<ul>
+			<li class="vod" v-for="(item, index) in listData" :key="index">
+				<span class="img">
+					<Image :imgsrc="item.OnAirImage" :imgalt="item.Title" default="d" />
+					<Bar :percetageTime="item.percentTime" />
+					<span
+						class="vod_btn_play"
+						:style="{ backgroundImage: backgroundImage }"
+					></span>
+				</span>
+				<div>
+					<span class="title ellipsis2" v-html="item.Title"></span>
+					<span class="program ellipsis" v-html="item.TypeTitle"></span>
+					<span class="writer">
+						{{ timeGetter(item.StartTime, item.EndTime) }}
+					</span>
+				</div>
+			</li>
+		</ul>
+	</div>
+</template>
+
+<script lang="ts">
+import { computed, defineComponent, PropType, reactive, toRefs } from 'vue';
+import { vodPlayBtn } from '@/common/modules/images';
+import Image from '@/common/components/atoms/Image/index.vue';
+import Bar from '@/common/components/atoms/Bar/index.vue';
+import { IOnAirListSchema } from '@/types';
+
+export default defineComponent({
+	components: { Image, Bar },
+	props: {
+		listData: {
+			type: [] as PropType<IOnAirListSchema[] | any[]>,
+			required: false,
+		},
+	},
+	setup(props) {
+		const state = reactive({
+			backgroundImage: computed(() => vodPlayBtn.url),
+		});
+
+		const timeGetter = (startTime: string, endTime: string) => {
+			return `${startTime.slice(0, 2)}:${startTime.slice(2, 4)}
+			~
+			${endTime.slice(0, 2)}:${endTime.slice(2, 4)}`;
+		};
+
+		return {
+			...toRefs(state),
+			timeGetter,
+		};
+	},
+});
+</script>
+
+<style scoped></style>
