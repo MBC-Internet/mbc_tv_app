@@ -28,7 +28,13 @@ const upBtnImg = {
 	url: require('@/assets/images/ico_top.png'),
 };
 
+const vodPlayBtn = {
+	name: 'mbc 영상 재생',
+	url: require('@/assets/images/btn_play.png'),
+};
+
 export {
+	vodPlayBtn,
 	baseImage,
 	mbcNewsLogo,
 	mbcNewsDeskLogo,

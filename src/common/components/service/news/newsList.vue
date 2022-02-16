@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import Image from '@/common/components/atoms/image/index.vue';
+import Image from '@/common/components/atoms/Image/index.vue';
 import { mbcNewsLogo } from '@/common/modules/images/index';
 import { News } from '@/types/news';
 import { computed, defineComponent, PropType, reactive, toRefs } from 'vue';

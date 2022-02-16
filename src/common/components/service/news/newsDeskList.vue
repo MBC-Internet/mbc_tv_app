@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import { mbcNewsDeskLogo } from '@/common/modules/images/index';
-import Image from '@/common/components/atoms/image/index.vue';
+import Image from '@/common/components/atoms/Image/index.vue';
 import { NewsDesk } from '@/types/news';
 import { computed, defineComponent, PropType } from 'vue';
 

@@ -19,7 +19,7 @@ import {
 	reactive,
 	toRefs,
 } from 'vue';
-import Button from '@/common/components/atoms/button/index.vue';
+import Button from '@/common/components/atoms/Button/index.vue';
 import { upBtnImg } from '@/common/modules/images';
 
 export default defineComponent({

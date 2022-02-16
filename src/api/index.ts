@@ -9,6 +9,11 @@ export const config = {
 	mediaUrl: `${process.env.VUE_APP_MEDIA_API}`,
 };
 
+export const enum ScheduleBannerCategory {
+	ONAIR = 1,
+	MBICLIVE = 2,
+}
+
 export const date = getDateFormat();
 
 export const ApiService = {

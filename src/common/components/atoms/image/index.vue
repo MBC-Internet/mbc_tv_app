@@ -1,5 +1,4 @@
 <template>
-	<!--<img :src="imgsrc" :alt="imgalt" @error="replaceDefaultImg" />-->
 	<img :data-url="imgsrc" @error="replaceDefaultImg" v-lazy-load />
 </template>
 

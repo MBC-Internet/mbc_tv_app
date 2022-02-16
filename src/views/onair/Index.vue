@@ -1,16 +1,40 @@
 <template>
-	<div></div>
+	<div class="wrap_onair">
+		<Banner v-if="topBanner" :topBanner="topBanner" />
+		<OnAirView />
+	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, reactive, toRefs } from 'vue';
+import Banner from '@/common/components/molecules/Banner/index.vue';
+import OnAirView from '@/common/components/service/onair/index.vue';
+import { MbcDataInterface } from '@/types';
+import { fetchTopBanner } from '@/api/modules/onair/onairAPI';
 
 export default defineComponent({
 	name: 'onair',
+	components: { Banner, OnAirView },
 	setup() {
-		return {};
+		const state = reactive({
+			topBanner: {} as MbcDataInterface,
+		});
+
+		(async () => {
+			try {
+				state.topBanner = await (await fetchTopBanner()).data[0];
+			} catch (e) {
+				state.topBanner = {} as MbcDataInterface;
+			}
+		})();
+
+		return {
+			...toRefs(state),
+		};
 	},
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url('~@/assets/css/sub.css');
+</style>
