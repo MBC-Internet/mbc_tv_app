@@ -1,9 +1,14 @@
 <template>
+	<!--IOnAirListSchema-->
 	<div v-if="listData" class="wrapper thumb_list">
 		<ul>
 			<li class="vod" v-for="(item, index) in listData" :key="index">
 				<span class="img">
-					<Image :imgsrc="item.OnAirImage" :imgalt="item.Title" default="d" />
+					<Image
+						:imgsrc="item.OnAirImage || item.WidthImage"
+						:imgalt="item.Title"
+						default="d"
+					/>
 					<Bar :percetageTime="item.percentTime" />
 					<span
 						class="vod_btn_play"
@@ -12,9 +17,17 @@
 				</span>
 				<div>
 					<span class="title ellipsis2" v-html="item.Title"></span>
-					<span class="program ellipsis" v-html="item.TypeTitle"></span>
+					<span
+						class="program ellipsis"
+						v-html="item.TypeTitle || item.OnAirAttr"
+					></span>
 					<span class="writer">
-						{{ timeGetter(item.StartTime, item.EndTime) }}
+						{{
+							timeGetter(
+								item.StartTime || item.StartDate,
+								item.EndTime || item.EndDate,
+							)
+						}}
 					</span>
 				</div>
 			</li>
@@ -27,13 +40,13 @@ import { computed, defineComponent, PropType, reactive, toRefs } from 'vue';
 import { vodPlayBtn } from '@/common/modules/images';
 import Image from '@/common/components/atoms/Image/index.vue';
 import Bar from '@/common/components/atoms/Bar/index.vue';
-import { IOnAirListSchema } from '@/types';
+import { IOnAirListSchema, ISportsListSchema } from '@/types';
 
 export default defineComponent({
 	components: { Image, Bar },
 	props: {
 		listData: {
-			type: [] as PropType<IOnAirListSchema[] | any[]>,
+			type: [] as PropType<IOnAirListSchema[]> | PropType<ISportsListSchema[]>,
 			required: false,
 		},
 	},
@@ -43,9 +56,23 @@ export default defineComponent({
 		});
 
 		const timeGetter = (startTime: string, endTime: string) => {
-			return `${startTime.slice(0, 2)}:${startTime.slice(2, 4)}
-			~
-			${endTime.slice(0, 2)}:${endTime.slice(2, 4)}`;
+			let str = '';
+			try {
+				if (startTime.length > 4) {
+					str = `${startTime.substring(9, 13).slice(0, 2)}:${startTime
+						.substring(9, 13)
+						.slice(2)}~${endTime.substring(9, 13).slice(0, 2)}:${endTime
+						.substring(9, 13)
+						.slice(2)}`;
+				} else {
+					str = `${startTime.slice(0, 2)}:${startTime.slice(2, 4)}
+						~
+						${endTime.slice(0, 2)}:${endTime.slice(2, 4)}`;
+				}
+			} catch (e) {
+				str = '';
+			}
+			return str;
 		};
 
 		return {

@@ -1,18 +1,20 @@
 <template>
 	<div class="wrap_onair">
 		<Banner v-if="topBanner" :topBanner="topBanner" />
+		<OnAirView />
 	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue';
 import Banner from '@/common/components/molecules/Banner/index.vue';
+import OnAirView from '@/common/components/service/onair/index.vue';
 import { MbcDataInterface } from '@/types';
 import { fetchTopBanner } from '@/api/modules/onair/onairAPI';
 
 export default defineComponent({
 	name: 'onair',
-	components: { Banner },
+	components: { Banner, OnAirView },
 	setup() {
 		const state = reactive({
 			topBanner: {} as MbcDataInterface,
@@ -33,4 +35,6 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url('~@/assets/css/sub.css');
+</style>

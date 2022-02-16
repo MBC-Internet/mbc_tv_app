@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { OnairData } from '@/types/onair';
+import { OnairData, SportsLiveData } from '@/types/onair';
 import { defineComponent, PropType } from 'vue';
 import ListProxy from '@/common/components/molecules/layout/ListProxy/index.vue';
 
@@ -18,7 +18,7 @@ export default defineComponent({
 			required: true,
 		},
 		scheduleList: {
-			type: [] as PropType<OnairData[]>,
+			type: [] as PropType<OnairData[]> | PropType<SportsLiveData[]>,
 			required: true,
 		},
 	},

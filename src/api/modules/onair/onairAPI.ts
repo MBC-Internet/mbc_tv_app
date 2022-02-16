@@ -1,7 +1,7 @@
 import { AxiosPromise } from 'axios';
 import { ApiService, config, date, ScheduleBannerCategory } from '@/api/index';
 import store from '@/store';
-import { OnairData } from '@/types/onair';
+import { OnairData, SportsLiveData } from '@/types/onair';
 import { MbcDataInterface } from '@/types';
 
 const fetchTopBanner = (): AxiosPromise<MbcDataInterface[]> => {
@@ -23,4 +23,13 @@ const fetchOnAirListData = (): AxiosPromise<OnairData[]> => {
 	return request;
 };
 
-export { fetchTopBanner, fetchOnAirListData };
+const fetchSportLiveData = (): AxiosPromise<SportsLiveData[]> => {
+	const request = ApiService.get(
+		`${config.controlUrl}/Sports/Schedule/V2
+		?date=${date}
+		`,
+	);
+	return request;
+};
+
+export { fetchTopBanner, fetchOnAirListData, fetchSportLiveData };

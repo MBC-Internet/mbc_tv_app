@@ -1,21 +1,25 @@
 <template>
 	<div>
 		<PartialList
-			v-if="tvList"
-			:onAirTitle="onAirTitle"
-			:scheduleList="schduleList"
+			v-if="sportsList"
+			onAirTitle="스포츠"
+			:scheduleList="sportsList"
 		/>
+		<PartialList v-if="tvList" onAirTitle="TV" :scheduleList="tvList" />
 		<PartialList
 			v-if="radioList"
-			:onAirTitle="onAirTitle"
-			:scheduleList="schduleList"
+			onAirTitle="라디오"
+			:scheduleList="radioList"
 		/>
 	</div>
 </template>
 
 <script lang="ts">
-import { fetchOnAirListData } from '@/api/modules/onair/onairAPI';
-import { mbicLiveData } from '@/types/mbicLive';
+import {
+	fetchOnAirListData,
+	fetchSportLiveData,
+} from '@/api/modules/onair/onairAPI';
+import { OnairData, SportsLiveData } from '@/types/onair';
 import { computed, defineComponent, reactive, toRefs } from 'vue';
 import PartialList from './module/partialList.vue';
 
@@ -25,12 +29,13 @@ export default defineComponent({
 	setup() {
 		const state = reactive({
 			onAirTitle: String,
-			schduleList: [] as Partial<mbicLiveData[]>,
+			sportsList: [] as Partial<SportsLiveData[]>,
+			schduleList: [] as Partial<OnairData[]>,
 		});
 
 		const computedList = reactive({
 			tvList: computed(() =>
-				state.schduleList.filter(t => t?.Type == 'TV' || 'MBCPLUS'),
+				state.schduleList.filter(t => t?.Type == 'MBCPLUS' || t?.Type == 'TV'),
 			),
 			radioList: computed(() =>
 				state.schduleList.filter(t => t?.Type == 'RADIO'),
@@ -39,9 +44,13 @@ export default defineComponent({
 
 		(async () => {
 			try {
+				state.sportsList = await (
+					await fetchSportLiveData()
+				).data.filter(t => t?.IsOnAir == 'Y');
 				state.schduleList = await (await fetchOnAirListData()).data;
 			} catch (e) {
-				state.schduleList = [] as mbicLiveData[];
+				state.sportsList = [] as SportsLiveData[];
+				state.schduleList = [] as OnairData[];
 			}
 		})();
 

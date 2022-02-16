@@ -1,4 +1,4 @@
-import { IOnAirListSchema, MbcDataInterface } from '..';
+import { IOnAirListSchema } from '..';
 
 export interface mbicLiveData extends IOnAirListSchema {
 	Type: string;

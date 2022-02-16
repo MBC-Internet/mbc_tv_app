@@ -39,6 +39,14 @@ export interface IOnAirListSchema {
 	EndTime: string;
 }
 
+export interface ISportsListSchema {
+	Title: string;
+	percentTime: string;
+	StartDate: string;
+	EndTDate: string;
+	OnAirAttr: string;
+}
+
 enum Division {
 	Banner = 'Banner',
 }
