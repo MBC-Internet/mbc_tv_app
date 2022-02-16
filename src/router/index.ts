@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import store from '@/store';
 import TimeLine from '@/views/timeline/Index.vue';
 import { userAgnetType } from '@/store/modules/userAgent/types';
+import { loadingSpinner } from '@/store/modules/loading/types';
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -43,6 +44,11 @@ const router = createRouter({
 
 router.isReady().then(() => {
 	store.dispatch(userAgnetType.actions.FETCH_USER_AGENT, null);
+});
+
+router.beforeEach((to, from, next) => {
+	store.commit(loadingSpinner.mutations.ON_SPINNER);
+	next();
 });
 
 export default router;

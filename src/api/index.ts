@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getDateFormat } from '@/common/utils/common';
 import axios, { AxiosResponse } from 'axios';
+import instance from './interceptors/interceptors';
 
 export const config = {
 	controlUrl: `${process.env.VUE_APP_CONTROL_API}`,
@@ -18,7 +19,7 @@ export const date = getDateFormat();
 
 export const ApiService = {
 	get(uri: string): Promise<AxiosResponse<any, any>> {
-		return axios.get(uri);
+		return instance.get(uri);
 	},
 	post(uri: string, params: any): Promise<AxiosResponse<any, any>> {
 		return axios.post(`${uri}`, params);

@@ -13,9 +13,11 @@
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
+    "vue-loading-overlay": "5.0",
     "vue-router": "^4.0.0-0",
     "vue3-lazy": "^1.0.0-alpha.1",
     "vue3-lazyload": "^0.2.5-beta",
+    "vue3-loading-overlay": "^0.0.0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {

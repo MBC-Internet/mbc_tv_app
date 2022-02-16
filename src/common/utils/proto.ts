@@ -9,7 +9,7 @@ export function isArrayOf<T>(
 	cls: new (...args: any[]) => T,
 ): array is T[] {
 	for (const item of array) {
-		if (item != null) return item.target instanceof cls;
+		if (item != null) return item instanceof cls;
 	}
 	return false;
 }

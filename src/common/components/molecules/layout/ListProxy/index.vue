@@ -59,10 +59,10 @@ export default defineComponent({
 			let str = '';
 			try {
 				if (startTime.length > 4) {
-					str = `${startTime.substring(9, 13).slice(0, 2)}:${startTime
-						.substring(9, 13)
-						.slice(2)}~${endTime.substring(9, 13).slice(0, 2)}:${endTime
-						.substring(9, 13)
+					str = `${startTime.substring(11, 13).slice(0, 2)}:${startTime
+						.substring(12)
+						.slice(2)}~${endTime.substring(11, 13).slice(0, 2)}:${endTime
+						.substring(12)
 						.slice(2)}`;
 				} else {
 					str = `${startTime.slice(0, 2)}:${startTime.slice(2, 4)}
