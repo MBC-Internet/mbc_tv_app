@@ -48,7 +48,16 @@ router.isReady().then(() => {
 
 router.beforeEach((to, from, next) => {
 	store.commit(loadingSpinner.mutations.ON_SPINNER);
-	next();
+	setTimeout(() => {
+		next();
+	}, 1);
+});
+
+router.afterEach((to, from, next) => {
+	//store.commit(loadingSpinner.mutations.OFF_SPINNER);
+	const toDepth = to.path.split('/').length;
+	const fromDepth = from.path.split('/').length;
+	to.meta.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
 });
 
 export default router;

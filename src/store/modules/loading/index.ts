@@ -9,7 +9,7 @@ export interface loadingState {
 export const loading: Module<loadingState, RootState> = {
 	namespaced: false,
 	state: () => ({
-		isLoading: true,
+		isLoading: false,
 	}),
 	mutations: {
 		[loadingSpinner.mutations.ON_SPINNER](state: loadingState) {

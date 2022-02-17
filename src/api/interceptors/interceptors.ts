@@ -5,7 +5,7 @@ import { instance } from '../instance/index.instance';
 
 instance.interceptors.request.use(
 	config => {
-		store.commit(loadingSpinner.mutations.OFF_SPINNER);
+		//store.commit(loadingSpinner.mutations.OFF_SPINNER);
 		return config;
 	},
 	error => {
@@ -16,7 +16,7 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
 	response => {
-		store.commit(loadingSpinner.mutations.OFF_SPINNER);
+		//store.commit(loadingSpinner.mutations.OFF_SPINNER);
 		return response;
 	},
 	error => {

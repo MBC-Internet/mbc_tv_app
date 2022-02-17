@@ -1,5 +1,11 @@
 <template>
-	<img :data-url="imgsrc" @error="replaceDefaultImg" v-lazy-load />
+	<img
+		v-if="isLazyLoading"
+		:data-url="imgsrc"
+		@error="replaceDefaultImg"
+		v-lazy-load
+	/>
+	<img v-else :src="imgsrc" @error="replaceDefaultImg" />
 </template>
 
 <script lang="ts">
@@ -40,6 +46,11 @@ export default defineComponent({
 		default: {
 			type: String,
 			required: false,
+		},
+		isLazyLoading: {
+			type: Boolean,
+			required: false,
+			default: true,
 		},
 	},
 	setup(props) {

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getDateFormat } from '@/common/utils/common';
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import instance from './interceptors/interceptors';
 
 export const config = {
@@ -22,12 +22,12 @@ export const ApiService = {
 		return instance.get(uri);
 	},
 	post(uri: string, params: any): Promise<AxiosResponse<any, any>> {
-		return axios.post(`${uri}`, params);
+		return instance.post(`${uri}`, params);
 	},
 	put(uri: string, params: any): Promise<AxiosResponse<any, any>> {
-		return axios.put(`${uri}`, params);
+		return instance.put(`${uri}`, params);
 	},
 	delete(uri: string): Promise<AxiosResponse<any, any>> {
-		return axios.delete(`${uri}`);
+		return instance.delete(`${uri}`);
 	},
 };

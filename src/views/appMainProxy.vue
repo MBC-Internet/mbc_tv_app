@@ -2,16 +2,24 @@
 	<div v-cloak id="container">
 		<h1 class="blind">MBC 홈</h1>
 		<GNB class="gnb" />
-		<Spinner :loadingStatus="loadingStatus" />
-		<div class="app-body">
-			<router-view></router-view>
+		<div>
+			<div v-show="!isLoading" class="app-body">
+				<router-view v-slot="{ Component, route }">
+					<transition :name="route.meta.transition || 'fade'">
+						<component :is="Component" :key="route.name" />
+					</transition>
+				</router-view>
+			</div>
+			<div v-show="isLoading">
+				<Spinner :isLoading="isLoading" />
+			</div>
 		</div>
 		<UpBtn />
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, watchEffect } from 'vue';
+import { computed, defineComponent, watch } from 'vue';
 import store from '@/store';
 import GNB from '@/common/modules/navigations/gnb/GNB.vue';
 import Spinner from '@/common/components/molecules/Spinner/index.vue';
@@ -22,10 +30,16 @@ export default defineComponent({
 	name: 'mbcappProxy',
 	components: { GNB, UpBtn, Spinner },
 	setup() {
-		const loadingStatus = ref(store.getters[loadingSpinner.getters.GET_STATUS]);
+		let isLoading = computed(
+			() => store.getters[loadingSpinner.getters.GET_STATUS],
+		);
+
+		watch(isLoading, val => {
+			isLoading = val;
+		});
 
 		return {
-			loadingStatus,
+			isLoading,
 		};
 	},
 });
@@ -33,4 +47,20 @@ export default defineComponent({
 
 <style scoped>
 @import url('~@/assets/css/common.css');
+
+.fade-enter-active {
+	transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+.page-enter-active,
+.page-leave-active {
+	transition: opacity 0.3s;
+}
+.page-enter,
+.page-leave-to {
+	opacity: 0;
+}
 </style>

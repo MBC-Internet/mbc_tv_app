@@ -6,11 +6,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
+import { defineComponent, onMounted, reactive, toRefs } from 'vue';
 import { News, NewsDesk } from '@/types/news';
 import newsList from '@/common/components/service/news/newsList.vue';
 import newsDeskList from '@/common/components/service/news/newsDeskList.vue';
 import { fetchNews, fetchNewsDesk } from '@/api/modules/news/newsAPI';
+import store from '@/store';
+import { loadingSpinner } from '@/store/modules/loading/types';
 
 export default defineComponent({
 	name: 'news',
@@ -25,6 +27,10 @@ export default defineComponent({
 			state.newsList = await (await fetchNews()).data.Data;
 			state.newsDeskList = await (await fetchNewsDesk()).data.Data;
 		})();
+
+		onMounted(() =>
+			setTimeout(() => store.commit(loadingSpinner.mutations.OFF_SPINNER), 10),
+		);
 
 		return {
 			...toRefs(state),

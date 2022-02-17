@@ -2,13 +2,18 @@
 	<div>
 		<div class="visual_top">
 			<span class="img">
-				<Image :imgsrc="mbcNewsLogo.url" :imgalt="mbcNewsLogo.name" />
+				<Image
+					:imgsrc="mbcNewsLogo.url"
+					:imgalt="mbcNewsLogo.name"
+					isLazyLoading="false"
+				/>
 			</span>
 			<div class="news_top" v-if="newsTopItems">
 				<a>
 					<Image
 						:imgsrc="newsTopItems.Image"
 						:imgalt="newsTopItems.Title"
+						isLazyLoading="false"
 						default="d"
 					/>
 					<div class="wrap_txt ellipsis">
@@ -20,7 +25,12 @@
 		<div class="wrapper news_mid">
 			<div class="half" v-for="(item, index) in newsMidItems" :key="index">
 				<a>
-					<Image :imgsrc="item.Image" :imgalt="item.Title" default="d" />
+					<Image
+						:imgsrc="item.Image"
+						:imgalt="item.Title"
+						default="d"
+						isLazyLoading="false"
+					/>
 					<span class="title ellipsis2" v-html="item.Title"></span>
 				</a>
 			</div>

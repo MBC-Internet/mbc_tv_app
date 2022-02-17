@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<PartialList
-			v-if="sportsList"
+			v-if="sportsList.length > 0"
 			onAirTitle="스포츠"
 			:scheduleList="sportsList"
 		/>

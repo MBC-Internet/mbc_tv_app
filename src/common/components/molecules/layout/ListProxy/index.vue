@@ -36,11 +36,20 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, reactive, toRefs } from 'vue';
+import {
+	computed,
+	defineComponent,
+	onMounted,
+	PropType,
+	reactive,
+	toRefs,
+} from 'vue';
 import { vodPlayBtn } from '@/common/modules/images';
 import Image from '@/common/components/atoms/Image/index.vue';
 import Bar from '@/common/components/atoms/Bar/index.vue';
 import { IOnAirListSchema, ISportsListSchema } from '@/types';
+import store from '@/store';
+import { loadingSpinner } from '@/store/modules/loading/types';
 
 export default defineComponent({
 	components: { Image, Bar },
@@ -75,6 +84,9 @@ export default defineComponent({
 			return str;
 		};
 
+		onMounted(() =>
+			setTimeout(() => store.commit(loadingSpinner.mutations.OFF_SPINNER), 10),
+		);
 		return {
 			...toRefs(state),
 			timeGetter,
