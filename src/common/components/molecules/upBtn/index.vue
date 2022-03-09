@@ -1,5 +1,5 @@
 <template>
-	<a href="#app">
+	<a @click="moveTop">
 		<transition name="fade">
 			<Button
 				class="scroll-top"
@@ -35,14 +35,28 @@ export default defineComponent({
 			window.scrollY > 20 ? (state.show = true) : (state.show = false);
 		};
 
-		onBeforeMount(() => window.addEventListener('scroll', handleScroll));
+		onBeforeMount(() => {
+			window.addEventListener('scroll', handleScroll);
+		});
+
+		const moveTop = () => window.scrollTo(0, 0);
 
 		return {
 			...toRefs(state),
 			handleScroll,
+			moveTop,
 		};
 	},
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+</style>

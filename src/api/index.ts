@@ -31,3 +31,18 @@ export const ApiService = {
 		return instance.delete(`${uri}`);
 	},
 };
+
+export const ApiMediaService = {
+	get(uri: string): Promise<AxiosResponse<any, any>> {
+		return instance.get(uri);
+	},
+	post(uri: string, params: any): Promise<AxiosResponse<any, any>> {
+		return instance.post(`${uri}`, params);
+	},
+	put(uri: string, params: any): Promise<AxiosResponse<any, any>> {
+		return instance.put(`${uri}`, params);
+	},
+	delete(uri: string): Promise<AxiosResponse<any, any>> {
+		return instance.delete(`${uri}`);
+	},
+};

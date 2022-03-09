@@ -1,12 +1,12 @@
 import { AxiosPromise } from 'axios';
-import { ApiService, config, date, ScheduleBannerCategory } from '@/api/index';
+import { ApiService, date, ScheduleBannerCategory } from '@/api/index';
 import store from '@/store';
 import { OnairData, SportsLiveData } from '@/types/onair';
 import { MbcDataInterface } from '@/types';
 
 const fetchTopBanner = (): AxiosPromise<MbcDataInterface[]> => {
 	const request = ApiService.get(
-		`${config.controlUrl}/MBCApp/Banner/Live
+		`/MBCApp/Banner/Live
 		?date=${date}
 		&type=${store.state.userAgent.mobileState}
 		&category=${ScheduleBannerCategory.ONAIR}`,
@@ -16,7 +16,7 @@ const fetchTopBanner = (): AxiosPromise<MbcDataInterface[]> => {
 
 const fetchOnAirListData = (): AxiosPromise<OnairData[]> => {
 	const request = ApiService.get(
-		`${config.controlUrl}/Schedule/ONAIRWITHNVOD
+		`/Schedule/ONAIRWITHNVOD
 		?date=${date}
 		`,
 	);
@@ -25,7 +25,7 @@ const fetchOnAirListData = (): AxiosPromise<OnairData[]> => {
 
 const fetchSportLiveData = (): AxiosPromise<SportsLiveData[]> => {
 	const request = ApiService.get(
-		`${config.controlUrl}/Sports/Schedule/V2
+		`/Sports/Schedule/V2
 		?date=${date}
 		`,
 	);

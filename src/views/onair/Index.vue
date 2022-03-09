@@ -11,6 +11,7 @@ import Banner from '@/common/components/molecules/Banner/index.vue';
 import OnAirView from '@/common/components/service/onair/index.vue';
 import { MbcDataInterface } from '@/types';
 import { fetchTopBanner } from '@/api/modules/onair/onairAPI';
+import { offSpinner } from '@/common/modules/hook/index';
 
 export default defineComponent({
 	name: 'onair',
@@ -27,6 +28,8 @@ export default defineComponent({
 				state.topBanner = {} as MbcDataInterface;
 			}
 		})();
+
+		offSpinner();
 
 		return {
 			...toRefs(state),

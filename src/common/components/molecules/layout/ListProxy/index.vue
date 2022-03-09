@@ -84,9 +84,6 @@ export default defineComponent({
 			return str;
 		};
 
-		onMounted(() =>
-			setTimeout(() => store.commit(loadingSpinner.mutations.OFF_SPINNER), 10),
-		);
 		return {
 			...toRefs(state),
 			timeGetter,

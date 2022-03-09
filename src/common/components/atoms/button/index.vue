@@ -3,8 +3,11 @@
 		v-if="show"
 		type="button"
 		:id="buttonId"
+		:class="buttonClass"
 		:style="{ backgroundImage: backgroundImage }"
-	></button>
+	>
+		{{ buttonText }}
+	</button>
 </template>
 
 <script lang="ts">
@@ -15,13 +18,26 @@ export default defineComponent({
 		show: {
 			type: Boolean,
 			default: true,
+			require: false,
 		},
 		buttonId: {
 			type: String,
+			required: false,
 			default: '',
 		},
 		backgroundImage: {
 			type: String,
+			required: false,
+			default: '',
+		},
+		buttonText: {
+			type: String,
+			required: false,
+			default: '',
+		},
+		buttonClass: {
+			type: String,
+			required: false,
 			default: '',
 		},
 	},

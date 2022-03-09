@@ -12,6 +12,7 @@ import MbicLiveList from '@/common/components/service/mbicLive/mbicLiveList.vue'
 import { MbcDataInterface } from '@/types';
 import { defineComponent, reactive, toRefs } from 'vue';
 
+import { offSpinner } from '@/common/modules/hook/index';
 export default defineComponent({
 	name: 'mbivlive',
 	components: { Banner, MbicLiveList },
@@ -27,7 +28,7 @@ export default defineComponent({
 				state.topBanner = {} as MbcDataInterface;
 			}
 		})();
-
+		offSpinner();
 		return {
 			...toRefs(state),
 		};

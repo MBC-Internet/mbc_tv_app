@@ -1,6 +1,3 @@
-import store from '@/store';
-import { loadingSpinner } from '@/store/modules/loading/types';
-
 import { instance } from '../instance/index.instance';
 
 instance.interceptors.request.use(

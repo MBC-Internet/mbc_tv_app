@@ -1,12 +1,12 @@
 import { AxiosPromise } from 'axios';
-import { ApiService, config, date, ScheduleBannerCategory } from '@/api/index';
+import { ApiService, date, ScheduleBannerCategory } from '@/api/index';
 import { MbcDataInterface } from '@/types';
 import { mbicLiveData } from '@/types/mbicLive';
 import store from '@/store';
 
 const fetchTopBanner = (): AxiosPromise<MbcDataInterface[]> => {
 	const request = ApiService.get(
-		`${config.controlUrl}/MBCApp/Banner/Live
+		`/MBCApp/Banner/Live
 		?date=${date}
 		&type=${store.state.userAgent.mobileState}
 		&category=${[ScheduleBannerCategory.MBICLIVE]}`,
@@ -16,7 +16,7 @@ const fetchTopBanner = (): AxiosPromise<MbcDataInterface[]> => {
 
 const fetchMbicLiveListData = (): AxiosPromise<mbicLiveData[]> => {
 	const request = ApiService.get(
-		`${config.controlUrl}/Schedule/ONAIRWITHNVOD
+		`/Schedule/ONAIRWITHNVOD
 		?date=${date}
 		`,
 	);

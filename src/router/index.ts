@@ -53,8 +53,7 @@ router.beforeEach((to, from, next) => {
 	}, 1);
 });
 
-router.afterEach((to, from, next) => {
-	//store.commit(loadingSpinner.mutations.OFF_SPINNER);
+router.afterEach((to, from) => {
 	const toDepth = to.path.split('/').length;
 	const fromDepth = from.path.split('/').length;
 	to.meta.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
