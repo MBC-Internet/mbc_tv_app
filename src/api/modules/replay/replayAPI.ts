@@ -8,8 +8,14 @@ import {
 import { MbcDataInterface } from '@/types';
 import store from '@/store';
 import {
+	BestVod,
+	EditorPickList,
+	NewestVod,
+	OldRecommendVodProxy,
+	PreviewVod,
 	ProgramPromotion,
 	ProgramPromotionData,
+	SketchVod,
 	UserSeamProxy,
 } from '@/types/replay';
 
@@ -24,16 +30,15 @@ enum contentType {
 	sketch = 5,
 }
 
-const editorChannelIdx = () => {
+const editorChannelIdx = (): number => {
 	return Math.ceil((Math.random() * 10) / 3);
 };
 
 const fetchTopBanner = (): AxiosPromise<MbcDataInterface[]> => {
 	const request = ApiService.get(
-		`/MBCApp/Banner/Live
-		?date=${date}
-		&type=${store.state.userAgent.mobileState}
-		&category=${[ScheduleBannerCategory.ONAIR]}`,
+		`/MBCApp/Banner/VOD?date=${date}&type=${
+			store.state.userAgent.mobileState
+		}&category=${[ScheduleBannerCategory.ONAIR]}`,
 	);
 	return request;
 };
@@ -55,66 +60,48 @@ const fetchProgramPromotionData = (
 };
 
 const fetchUserSeamData = (): AxiosPromise<UserSeamProxy> => {
-	const request = ApiMediaService.get(
-		`/Seamless/UserSeamList
-        ?date=${date}`,
+	const request = ApiMediaService.get(`/Seamless/UserSeamList?date=${date}`);
+	return request;
+};
+
+const fetchNewestVOD = (): AxiosPromise<NewestVod[]> => {
+	const request = ApiService.get(`/App/V2/VOD/Newest?date=${date}`);
+	return request;
+};
+
+const fetchBestVOD = (): AxiosPromise<BestVod[]> => {
+	const request = ApiService.get(
+		`/WebApi/Main/WeekBestVod?date=${date}&type=${promotionInfo.contentTopCnt}&deviceType=${promotionInfo.deviceType}&day=${promotionInfo.day}`,
 	);
 	return request;
 };
 
-const fetchNewestVOD = (): AxiosPromise<any[]> => {
+const fetchPreviewVOD = (): AxiosPromise<PreviewVod[]> => {
 	const request = ApiService.get(
-		`/App/V2/VOD/Newest
-        ?date=${date}`,
+		`/MBCApp/Timeline/ContentType?date=${date}&contentType=${contentType.preview}`,
 	);
 	return request;
 };
 
-const fetchBestVOD = (): AxiosPromise<any[]> => {
+const fetchSketchVOD = (): AxiosPromise<SketchVod[]> => {
 	const request = ApiService.get(
-		`/WebApi/Main/WeekBestVod
-        ?date=${date}
-        &type=${promotionInfo.contentTopCnt}
-        &deviceType=${promotionInfo.deviceType}
-        &day=${promotionInfo.day}`,
+		`/MBCApp/Timeline/ContentType?date=${date}&contentType=${contentType.sketch}`,
 	);
 	return request;
 };
 
-const fetchPreviewVOD = (): AxiosPromise<any[]> => {
+const fetchEditorPick = (): AxiosPromise<EditorPickList> => {
 	const request = ApiService.get(
-		`/MBCApp/Timeline/ContentType
-        ?date=${date}
-        &contentType=${contentType.preview}`,
+		`/WebApi/Main/ChannelEditor?date=${date}&deviceType=${
+			promotionInfo.deviceType
+		}&channel=${editorChannelIdx()}`,
 	);
 	return request;
 };
 
-const fetchSketchVOD = (): AxiosPromise<any[]> => {
+const fetchOldRecommendVOD = (): AxiosPromise<OldRecommendVodProxy> => {
 	const request = ApiService.get(
-		`/MBCApp/Timeline/ContentType
-        ?date=${date}
-        &contentType=${contentType.sketch}`,
-	);
-	return request;
-};
-
-const fetchEditorPick = (): AxiosPromise<any[]> => {
-	const request = ApiService.get(
-		`/WebApi/Main/ChannelEditor
-        ?date=${date}
-        &deviceType=${promotionInfo.deviceType}
-        &channel=${editorChannelIdx}`,
-	);
-	return request;
-};
-
-const fetchOldRecommendVOD = (): AxiosPromise<any[]> => {
-	const request = ApiService.get(
-		`/WebApi/Main/Legend
-        ?date=${date}
-        &deviceType=${promotionInfo.deviceType}
-        &channel=0&top=1&opt=N`,
+		`/WebApi/Main/Legend?date=${date}&deviceType=${promotionInfo.deviceType}&channel=0&top=1&opt=N`,
 	);
 	return request;
 };

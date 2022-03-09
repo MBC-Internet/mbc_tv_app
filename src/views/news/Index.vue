@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
+import { defineComponent, onMounted, reactive, toRefs } from 'vue';
 import { News, NewsDesk } from '@/types/news';
 import newsList from '@/common/components/service/news/newsList.vue';
 import newsDeskList from '@/common/components/service/news/newsDeskList.vue';

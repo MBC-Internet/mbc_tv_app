@@ -5,8 +5,7 @@ export interface ProgramPromotion {
 	FontColor: string;
 	RelationContents?: ProgramPromotionData[];
 }
-
-export interface ProgramPromotionData {
+export interface IReplayListProxy {
 	BBSID: string;
 	BBSURL: string;
 	BroadCastID: string;
@@ -53,3 +52,46 @@ export interface UserSeam {
 	MediaTime: number;
 	ViewDate: string;
 }
+
+export interface OldRecommendVodProxy {
+	Channel: string;
+	Link: string;
+	List: OldRecommendVod[];
+}
+
+export interface OldRecommendVod {
+	BID: string;
+	Image: string;
+	Title: string;
+	URL: string;
+}
+
+export interface EditorPickList {
+	ChannelID: number;
+	editorIdx: number;
+	totalCnt: number;
+	List: EditorPick[];
+}
+
+export interface EditorPick {
+	BGImage: string;
+	ChannelID: number;
+	EditorTitle: string;
+	List: EditorSubPick[];
+}
+
+export interface EditorSubPick {
+	BID: string;
+	ContentType: string;
+	Image: string;
+	Link: string;
+	PlayTime: string;
+	Title: string;
+}
+
+export type ProgramPromotionData = IReplayListProxy;
+export type BestVod = IReplayListProxy;
+export type NewestVod = IReplayListProxy;
+
+export type PreviewVod = MbcDataInterface;
+export type SketchVod = MbcDataInterface;

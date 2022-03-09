@@ -4,7 +4,7 @@ import { onMounted } from 'vue';
 
 const offSpinner = () => {
 	onMounted(() =>
-		setTimeout(() => store.commit(loadingSpinner.mutations.OFF_SPINNER), 10),
+		setTimeout(() => store.commit(loadingSpinner.mutations.OFF_SPINNER), 100),
 	);
 };
 
