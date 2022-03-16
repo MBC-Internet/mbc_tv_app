@@ -33,6 +33,11 @@ const vodPlayBtn = {
 	url: require('@/assets/images/btn_play.png'),
 };
 
+const vodRefresh = {
+	name: 'mbc refresh',
+	url: require('@/assets/images/btn_refresh.png'),
+};
+
 export {
 	vodPlayBtn,
 	baseImage,
@@ -41,4 +46,5 @@ export {
 	defaultDramaThumbnail,
 	defaultMovieThumbnail,
 	upBtnImg,
+	vodRefresh,
 };

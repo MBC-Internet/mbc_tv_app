@@ -68,7 +68,7 @@ export interface OldRecommendVod {
 
 export interface EditorPickList {
 	ChannelID: number;
-	editorIdx: number;
+	EditorIdx: number;
 	totalCnt: number;
 	List: EditorPick[];
 }

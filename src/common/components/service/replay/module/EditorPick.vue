@@ -4,18 +4,19 @@
 		<h2 class="b_title">Editor's pick</h2>
 		<span
 			class="tit_info"
-			v-html="editorPickList[0]?.List[editorPickList[0]?.editorIdx].EditorTitle"
+			v-html="editorPickList[editorIdx || 0]?.EditorTitle"
 		></span>
 		<ul>
 			<li
 				class="vod"
-				v-for="(item, index) in editorPickList[0]?.List[
-					editorPickList[0]?.editorIdx
-				]?.List"
+				v-for="(item, index) in editorPickList[editorIdx || 0]?.List"
 				v-bind:key="index"
 			>
 				<span class="img"
-					><Image :imgsrc="item.Image" :imgalt="item.Title" default="d"
+					><Image
+						:imgsrc="item.Image"
+						:imgalt="item.Title"
+						:isLazyLoading="false"
 				/></span>
 				<div class="txt">
 					<span class="title ellipsis" v-html="item.Title"></span>
@@ -28,20 +29,26 @@
 			type="button"
 			class="btn_refresh"
 			:style="{
-				backgroundImage: `url('../../../assets/images/btn_refresh.png')`,
+				backgroundImage: vodRefresh,
 			}"
 		>
-			다음 콘텐츠 보기 {{ editorPickList.editorIdx + 1 }}/{{
-				editorPickList.totalCnt
-			}}
+			다음 콘텐츠 보기 {{ (editorIdx || 0) + 1 }}/{{ editorTotalCnt }}
 		</button>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import {
+	computed,
+	defineComponent,
+	PropType,
+	reactive,
+	ref,
+	toRefs,
+} from 'vue';
 import Image from '@/common/components/atoms/Image/index.vue';
-import { EditorPickList } from '@/types/replay';
+import { EditorPick } from '@/types/replay';
+import { vodRefresh } from '@/common/modules/images/index';
 
 export default defineComponent({
 	components: {
@@ -49,21 +56,27 @@ export default defineComponent({
 	},
 	props: {
 		editorPickList: {
-			type: [] as PropType<EditorPickList>,
+			type: [] as PropType<EditorPick[]>,
 			required: true,
 		},
 	},
 	setup(props) {
+		const state = reactive({
+			editorIdx: ref(0),
+			editorTitle: String,
+			editorTotalCnt: computed(() => props.editorPickList.length),
+		});
 		const editorIdxCnt = () => {
-			if (props.editorPickList.editorIdx >= 7) {
+			if (state.editorIdx >= 7) {
 				// eslint-disable-next-line vue/no-mutating-props
-				props.editorPickList.editorIdx = 0;
+				state.editorIdx = 0;
 			} else {
 				// eslint-disable-next-line vue/no-mutating-props
-				props.editorPickList.editorIdx = props.editorPickList.editorIdx + 1;
+				state.editorIdx = state.editorIdx + 1;
 			}
 		};
 		return {
+			...toRefs(state),
 			editorIdxCnt,
 		};
 	},

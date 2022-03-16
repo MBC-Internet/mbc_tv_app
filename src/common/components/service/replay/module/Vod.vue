@@ -15,7 +15,11 @@
 							class="label"
 							>다시보기</span
 						>
-						<span v-else class="label">{{ vodTitle }}</span>
+						<span
+							v-else-if="vodIndex === 'row4' || vodIndex === 'row5'"
+							class="label"
+							>{{ vodTitle }}</span
+						>
 						<span class="img">
 							<Image
 								:imgsrc="item.Image || item.Info.Relation.ContentImage"
