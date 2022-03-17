@@ -54,16 +54,17 @@ export interface UserSeam {
 }
 
 export interface OldRecommendVodProxy {
-	Channel: string;
 	Link: string;
+	Thema: string;
+	Channel: string;
 	List: OldRecommendVod[];
 }
 
 export interface OldRecommendVod {
-	BID: string;
-	Image: string;
 	Title: string;
 	URL: string;
+	Image: string;
+	BID: string;
 }
 
 export interface EditorPickList {

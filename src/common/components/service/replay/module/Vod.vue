@@ -3,8 +3,8 @@
 		<h2 class="b_title">{{ vodTitle }}</h2>
 		<div class="type_row" :id="vodIndex" ref="row">
 			<div class="slide">
-				<ul ref="vodUl">
-					<li class="vod" v-for="(item, index) in vodItem" v-bind:key="index">
+				<ul :style="{ width: `${getWidth}px` }">
+					<li class="vod" v-for="(item, i) in vodItem" v-bind:key="i">
 						<span
 							v-if="vodTitle == '주간 BEST' && item.ContentType == 3"
 							class="label"
@@ -20,7 +20,7 @@
 							class="label"
 							>{{ vodTitle }}</span
 						>
-						<span class="img">
+						<span>
 							<Image
 								:imgsrc="item.Image || item.Info.Relation.ContentImage"
 								:imgalt="item.Title || item.Info.Title"
@@ -50,7 +50,7 @@
 <script lang="ts">
 import { MbcDataInterface } from '@/types';
 import { IReplayListProxy } from '@/types/replay';
-import { defineComponent, PropType } from 'vue';
+import { computed, defineComponent, PropType, reactive, toRefs } from 'vue';
 import Image from '@/common/components/atoms/Image/index.vue';
 
 export default defineComponent({
@@ -72,7 +72,24 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		return {};
+		const LI_MARGIN = 6;
+
+		const getWidth = computed(() => {
+			var t = 1200;
+			if (props.vodItem.length > 0) {
+				t = 162 * props.vodItem.length + LI_MARGIN;
+			}
+			return t;
+		});
+
+		const styleObject = reactive({
+			width: (getWidth.value || 2000) + ' px',
+		});
+
+		return {
+			...toRefs(styleObject),
+			getWidth,
+		};
 	},
 });
 </script>
