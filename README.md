@@ -1,4 +1,4 @@
-<h1 align="center">MBC TV app</h1>  
+<h1 align="center">MBC TV 앱</h1>  
   
 <br/>  
 <div align="center" style="display:flex;">  
